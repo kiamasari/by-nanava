@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruslan Nanava — UX/UI · Websites · Visual Systems</title>
+  <meta name="description" content="Проектирую сайты и цифровые продукты для бизнеса. UX/UI-дизайн, лендинги, интерфейсы, визуальная упаковка.">
+
+  <!-- Раннее переключение классов: не прячем контент, если JS выключен / включён режим уменьшенного движения -->
+  <script>
+    (function () {
+      var h = document.documentElement;
+      h.classList.remove("no-js");
+      h.classList.add("js");
+      try {
+        if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          h.classList.add("reduced");
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Шрифт Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header class="site-header" id="top">
+    <div class="container header__inner">
+      <a class="logo" href="#top">Ruslan<br>nanava</a>
+
+      <nav class="nav" id="nav" aria-label="Главная навигация">
+        <a href="#projects" class="nav__link">Проекты</a>
+        <a href="#services" class="nav__link">Услуги</a>
+        <a href="#approach" class="nav__link">Подход</a>
+      </nav>
+
+      <a href="#cta" class="btn btn--outline header__btn">Обсудить проект</a>
+
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ГЕРОЙ -->
+    <section class="hero">
+      <div class="hero__media">
+        <img src="images/hero.png" alt="" class="hero__photo">
+        <span class="hero__grain" aria-hidden="true"></span>
+        <span class="hero__tint" aria-hidden="true"></span>
+      </div>
+      <div class="hero__content">
+        <h1 class="hero__title reveal-type" data-caret>
+          проектирую сайты<br>
+          и цифровые продукты для бизнеса
+        </h1>
+        <p class="hero__subtitle reveal" data-delay="600">UX/UI • Websites • Visual Systems</p>
+      </div>
+    </section>
+
+    <!-- ВВОДНЫЙ БЛОК / ПОДХОД -->
+    <section class="intro container" id="approach">
+      <h2 class="intro__title">
+        <span class="intro__line reveal-type">Не просто красиво.</span>
+        <span class="intro__line intro__line--muted reveal-type">Понятно, удобно, по задаче.</span>
+      </h2>
+      <p class="intro__text reveal-words">
+        Я помогаю собрать не только визуальную оболочку, но и структуру: что сказать,
+        как показать, в каком порядке выстроить блоки и как сделать взаимодействие
+        с продуктом понятным.
+      </p>
+    </section>
+
+    <!-- ПРОЕКТЫ -->
+    <section class="projects" id="projects">
+      <div class="projects__grid">
+
+        <article class="project">
+          <div class="project__media reveal-media">
+            <img src="images/project-1.png" alt="Проект Soul — сайт иммерсивного театра на планшете">
+          </div>
+          <h3 class="project__title reveal-type">Soul</h3>
+          <p class="project__desc reveal-words">
+            Сайт для иммерсивного театра, где визуальная подача работает как продолжение
+            сценического опыта: передаёт атмосферу, настроение и вовлекает пользователя
+            ещё до покупки билета.
+          </p>
+        </article>
+
+        <article class="project">
+          <div class="project__media reveal-media">
+            <img src="images/project-2-soul.png" alt="Проект Soul — сайт на экране ноутбука">
+          </div>
+          <h3 class="project__title reveal-type">Soul</h3>
+          <p class="project__desc reveal-words">
+            Сайт для иммерсивного театра, где визуальная подача работает как продолжение
+            сценического опыта: передаёт атмосферу, настроение и вовлекает пользователя
+            ещё до покупки билета.
+          </p>
+        </article>
+
+        <article class="project">
+          <div class="project__media reveal-media">
+            <img src="images/project-3-poster.png" alt="Проект Soul — печатные постеры">
+          </div>
+          <h3 class="project__title reveal-type">Soul</h3>
+          <p class="project__desc reveal-words">
+            Сайт для иммерсивного театра, где визуальная подача работает как продолжение
+            сценического опыта: передаёт атмосферу, настроение и вовлекает пользователя
+            ещё до покупки билета.
+          </p>
+        </article>
+
+        <article class="project">
+          <div class="project__media reveal-media">
+            <img src="images/project-laptop.png" alt="Проект Soul — сайт на ноутбуке в интерьере">
+          </div>
+          <h3 class="project__title reveal-type">Soul</h3>
+          <p class="project__desc reveal-words">
+            Сайт для иммерсивного театра, где визуальная подача работает как продолжение
+            сценического опыта: передаёт атмосферу, настроение и вовлекает пользователя
+            ещё до покупки билета.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- УСЛУГИ -->
+    <section class="services container" id="services">
+      <h2 class="services__title reveal-type" data-caret>Что можно собрать под вашу задачу</h2>
+      <p class="services__lead reveal-words">
+        Не каждому проекту нужен одинаковый формат. Иногда достаточно лендинга, иногда
+        нужна полноценная структура сайта, интерфейс продукта или визуальная упаковка бренда.
+        Я подбираю решение под задачу, а не наоборот.
+      </p>
+
+      <div class="services__box reveal">
+        <div class="service service--1">
+          <h3 class="service__num reveal-type">01 / Сайт для запуска</h3>
+          <p class="service__desc reveal-words">
+            Лендинг или презентационный сайт для продукта, услуги, эксперта или компании.
+            Помогает быстро объяснить предложение, показать ценность и собрать первые заявки.
+          </p>
+        </div>
+
+        <div class="service service--2">
+          <h3 class="service__num reveal-type">02 / Сайт для бизнеса</h3>
+          <p class="service__desc reveal-words">
+            Многостраничный сайт для компании, сервиса или бренда. Подходит, когда важно
+            подробно рассказать о продуктах, услугах, команде, преимуществах и сформировать доверие.
+          </p>
+        </div>
+
+        <div class="service service--3">
+          <h3 class="service__num reveal-type">03 / Интерфейс продукта</h3>
+          <p class="service__desc reveal-words">
+            UX/UI-дизайн для веб-сервисов, приложений, личных кабинетов и digital-продуктов.
+            Здесь фокус не только на визуале, но и на логике экранов, сценариях пользователя
+            и удобстве взаимодействия.
+          </p>
+        </div>
+
+        <div class="service service--4">
+          <h3 class="service__num reveal-type">04 / Визуальная упаковка</h3>
+          <p class="service__desc reveal-words">
+            Фирменный стиль, презентации, коммерческие материалы и визуальные элементы,
+            которые помогают бренду выглядеть цельно в digital-среде.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ПРИЗЫВ К ДЕЙСТВИЮ -->
+    <section class="cta" id="cta">
+      <p class="cta__title reveal-type" data-caret>
+        <span class="cta__title-sm">Расскажите о задаче —</span><br>
+        я предложу, с чего начать
+      </p>
+      <span class="cta__line reveal-line" aria-hidden="true"></span>
+      <a href="#" class="cta__btn reveal">Обсудить проект</a>
+    </section>
+
+  </main>
+
+  <!-- ПОДВАЛ -->
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <span class="footer__copy reveal">2026 – all rights reserved</span>
+
+      <div class="footer__center reveal">
+        <span class="footer__name">ruslan nanava</span>
+        <span class="footer__inn">инн: 124355634343</span>
+      </div>
+
+      <div class="footer__contacts reveal">
+        <a href="https://t.me/" class="footer__link">telegram</a>
+        <a href="mailto:hello@example.com" class="footer__link">e–mail</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Плавная инерционная прокрутка (необязательная зависимость; сайт работает и без неё) -->
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
