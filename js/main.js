@@ -12,35 +12,10 @@
   var ANIM = root.classList.contains("js") && !REDUCED;
 
   /* ---------- 1. Бургер-меню ---------- */
+  var headerH = 64;
+  var header = document.querySelector(".site-header");
   var burger = document.getElementById("burger");
-  var nav = document.getElementById("nav");
-
-  function closeMenu() {
-    if (!nav) return;
-    nav.classList.remove("is-open");
-    if (burger) {
-      burger.classList.remove("is-open");
-      burger.setAttribute("aria-expanded", "false");
-    }
-  }
-  function toggleMenu() {
-    if (!nav) return;
-    var open = !nav.classList.contains("is-open");
-    nav.classList.toggle("is-open", open);
-    burger.classList.toggle("is-open", open);
-    burger.setAttribute("aria-expanded", String(open));
-  }
-  if (burger && nav) {
-    burger.addEventListener("click", toggleMenu);
-    nav.addEventListener("click", function (e) {
-      if (e.target.closest(".nav__link")) closeMenu();
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeMenu();
-    });
-    var mqDesk = window.matchMedia("(min-width: 769px)");
-    mqDesk.addEventListener("change", function (e) { if (e.matches) closeMenu(); });
-  }
+  var menu = document.getElementById("menu");
 
   /* ---------- 2. Плавная инерционная прокрутка ---------- */
   var lenis = null;
@@ -56,8 +31,43 @@
     requestAnimationFrame(raf);
   }
 
-  // Якорные ссылки: плавный переход с учётом высоты шапки
-  var headerH = 64;
+  /* ---------- Мобильное меню (полноэкранный оверлей) ---------- */
+  function setMenu(open) {
+    if (!menu || !burger) return;
+    menu.classList.toggle("is-open", open);
+    burger.classList.toggle("is-open", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+    menu.setAttribute("aria-hidden", String(!open));
+    document.body.classList.toggle("is-locked", open);
+    if (header) header.classList.toggle("is-menu-open", open);
+    if (lenis) { open ? lenis.stop() : lenis.start(); }
+  }
+  function closeMenu() { setMenu(false); }
+
+  if (burger && menu) {
+    burger.addEventListener("click", function () {
+      setMenu(!menu.classList.contains("is-open"));
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenu();
+    });
+    // вернулись на десктоп — гарантированно закрываем меню
+    var mqDesk = window.matchMedia("(min-width: 901px)");
+    mqDesk.addEventListener("change", function (e) { if (e.matches) closeMenu(); });
+  }
+
+  /* ---------- Тема шапки: прозрачная над героем, светлая дальше ---------- */
+  var heroEl = document.querySelector(".hero");
+  if (heroEl && header && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        root.classList.toggle("at-top", entry.isIntersecting);
+      });
+    }, { rootMargin: "-" + headerH + "px 0px 0px 0px", threshold: 0 }).observe(heroEl);
+  }
+
+  /* ---------- Якорные ссылки: плавный переход с учётом высоты шапки ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener("click", function (e) {
       var id = a.getAttribute("href");
@@ -65,13 +75,20 @@
       var target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
+
+      var wasOpen = menu && menu.classList.contains("is-open");
       closeMenu();
-      if (lenis) {
-        lenis.scrollTo(target, { offset: -headerH });
-      } else {
-        var y = target.getBoundingClientRect().top + window.pageYOffset - headerH;
-        window.scrollTo({ top: y, behavior: REDUCED ? "auto" : "smooth" });
-      }
+
+      var go = function () {
+        if (lenis) {
+          lenis.scrollTo(target, { offset: -headerH });
+        } else {
+          var y = target.getBoundingClientRect().top + window.pageYOffset - headerH;
+          window.scrollTo({ top: y, behavior: REDUCED ? "auto" : "smooth" });
+        }
+      };
+      // если меню было открыто — даём ему закрыться и разблокировать прокрутку
+      if (wasOpen) setTimeout(go, 420); else go();
     });
   });
 

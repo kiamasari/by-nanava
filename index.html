@@ -12,6 +12,7 @@
       var h = document.documentElement;
       h.classList.remove("no-js");
       h.classList.add("js");
+      h.classList.add("at-top"); // стартуем над героем — шапка прозрачная (управляется из main.js)
       try {
         if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
           h.classList.add("reduced");
@@ -32,21 +33,36 @@
   <!-- ШАПКА -->
   <header class="site-header" id="top">
     <div class="container header__inner">
-      <a class="logo" href="#top">Ruslan<br>nanava</a>
+      <a class="logo" href="#top" aria-label="Ruslan Nanava — на главную">Ruslan Nanava</a>
 
-      <nav class="nav" id="nav" aria-label="Главная навигация">
-        <a href="#projects" class="nav__link">Проекты</a>
-        <a href="#services" class="nav__link">Услуги</a>
-        <a href="#approach" class="nav__link">Подход</a>
+      <nav class="nav-desktop" aria-label="Главная навигация">
+        <a href="#projects" class="nav-desktop__link">Проекты</a>
+        <a href="#services" class="nav-desktop__link">Услуги</a>
+        <a href="#approach" class="nav-desktop__link">Подход</a>
+        <a href="#cta" class="nav-desktop__link nav-desktop__cta">Обсудить проект</a>
       </nav>
 
-      <a href="#cta" class="btn btn--outline header__btn">Обсудить проект</a>
-
-      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav">
-        <span></span><span></span><span></span>
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span>
       </button>
     </div>
   </header>
+
+  <!-- ПОЛНОЭКРАННОЕ МОБИЛЬНОЕ МЕНЮ -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav class="menu__nav" aria-label="Мобильное меню">
+      <a href="#projects" class="menu__link"><span>Проекты</span></a>
+      <a href="#services" class="menu__link"><span>Услуги</span></a>
+      <a href="#approach" class="menu__link"><span>Подход</span></a>
+    </nav>
+    <div class="menu__bottom">
+      <a href="#cta" class="menu__cta">Обсудить проект</a>
+      <div class="menu__contacts">
+        <a href="https://t.me/" class="menu__contact">Telegram</a>
+        <a href="mailto:hello@example.com" class="menu__contact">E–mail</a>
+      </div>
+    </div>
+  </div>
 
   <main>
 
@@ -60,7 +76,7 @@
       <div class="hero__content">
         <h1 class="hero__title reveal-type" data-caret>
           проектирую сайты<br>
-          и цифровые продукты для бизнеса
+          и цифровые продукты<br>для бизнеса
         </h1>
         <p class="hero__subtitle reveal" data-delay="600">UX/UI • Websites • Visual Systems</p>
       </div>
@@ -194,16 +210,25 @@
   <!-- ПОДВАЛ -->
   <footer class="site-footer">
     <div class="container footer__inner">
-      <span class="footer__copy reveal">2026 – all rights reserved</span>
-
-      <div class="footer__center reveal">
-        <span class="footer__name">ruslan nanava</span>
+      <div class="footer__col footer__brand reveal">
+        <span class="footer__logo">Ruslan Nanava</span>
         <span class="footer__inn">инн: 124355634343</span>
       </div>
 
-      <div class="footer__contacts reveal">
-        <a href="https://t.me/" class="footer__link">telegram</a>
-        <a href="mailto:hello@example.com" class="footer__link">e–mail</a>
+      <nav class="footer__col footer__nav reveal" aria-label="Навигация в подвале">
+        <a href="#projects" class="footer__link">Проекты</a>
+        <a href="#services" class="footer__link">Услуги</a>
+        <a href="#approach" class="footer__link">Подход</a>
+      </nav>
+
+      <div class="footer__col footer__contacts reveal">
+        <a href="https://t.me/" class="footer__link">Telegram</a>
+        <a href="mailto:hello@example.com" class="footer__link">E–mail</a>
+      </div>
+
+      <div class="footer__col footer__meta reveal">
+        <span>©2026</span>
+        <span>all rights reserved</span>
       </div>
     </div>
   </footer>
